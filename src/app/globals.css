@@ -1,0 +1,124 @@
+@import "tailwindcss";
+@import "react-day-picker/dist/style.css";
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: radial-gradient(
+      900px 600px at -20% -10%,
+      rgba(212, 175, 55, 0.06),
+      transparent 65%
+    ),
+    radial-gradient(
+      700px 500px at 85% 5%,
+      rgba(212, 175, 55, 0.05),
+      transparent 60%
+    ),
+    linear-gradient(180deg, #070707, #0e0e0e);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+@keyframes kenburnsSoft {
+  0% {
+    transform: scale(1.02) translateY(0);
+  }
+
+  50% {
+    transform: scale(1.06) translateY(-6px);
+  }
+
+  100% {
+    transform: scale(1.02) translateY(0);
+  }
+}
+
+.kenburns-soft {
+  animation: kenburnsSoft 14s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* =========================
+   Luxury DayPicker (Gold)
+   ========================= */
+
+.lux-daypicker {
+  --rdp-cell-size: 42px;
+
+  /* force gold theme */
+  --rdp-accent-color: #d4af37;
+  --rdp-accent-background-color: rgba(212, 175, 55, 0.25);
+
+  --rdp-outline: 2px solid rgba(212, 175, 55, 0.4);
+  --rdp-outline-selected: 2px solid rgba(212, 175, 55, 0.65);
+
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.lux-daypicker .rdp-month_caption {
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.lux-daypicker .rdp-weekday {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.lux-daypicker .rdp-day {
+  border-radius: 14px;
+  transition: background 140ms ease, color 140ms ease, box-shadow 140ms ease,
+    transform 140ms ease;
+}
+
+.lux-daypicker .rdp-day:hover:not(.rdp-day_selected):not(.rdp-day_disabled) {
+  background: rgba(212, 175, 55, 0.15);
+  transform: translateY(-1px);
+}
+
+/* 🔥 Selected day — kill the blue */
+.lux-daypicker .rdp-day_selected,
+.lux-daypicker .rdp-day_selected:hover,
+.lux-daypicker .rdp-day_selected:focus-visible {
+  background-color: #d4af37 !important;
+  color: #0b0b0b !important;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.35);
+}
+
+/* Today (not selected) */
+.lux-daypicker .rdp-day_today:not(.rdp-day_selected) {
+  outline: 1px solid rgba(212, 175, 55, 0.55);
+}
+
+/* Navigation */
+.lux-daypicker .rdp-nav_button {
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 160ms ease;
+}
+
+.lux-daypicker .rdp-nav_button:hover {
+  border-color: rgba(212, 175, 55, 0.45);
+  box-shadow: 0 0 0 6px rgba(212, 175, 55, 0.12);
+  background: rgba(212, 175, 55, 0.12);
+}
+
+/* Remove any default blue focus rings inside DayPicker */
+.lux-daypicker button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.35);
+}

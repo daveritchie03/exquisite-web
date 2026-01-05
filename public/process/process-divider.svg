@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="900" viewBox="0 0 2400 900">
+  <defs>
+    <!-- Transparent base (so it sits nicely on your dark UI) -->
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#c8a26a" stop-opacity="0"/>
+      <stop offset="25%" stop-color="#c8a26a" stop-opacity="0.35"/>
+      <stop offset="50%" stop-color="#f0e3cd" stop-opacity="0.32"/>
+      <stop offset="75%" stop-color="#c8a26a" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#c8a26a" stop-opacity="0"/>
+    </linearGradient>
+
+    <radialGradient id="mistL" cx="26%" cy="48%" r="70%">
+      <stop offset="0%" stop-color="#f0e3cd" stop-opacity="0.10"/>
+      <stop offset="55%" stop-color="#f0e3cd" stop-opacity="0.03"/>
+      <stop offset="100%" stop-color="#f0e3cd" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="mistR" cx="74%" cy="52%" r="70%">
+      <stop offset="0%" stop-color="#c8a26a" stop-opacity="0.12"/>
+      <stop offset="55%" stop-color="#c8a26a" stop-opacity="0.035"/>
+      <stop offset="100%" stop-color="#c8a26a" stop-opacity="0"/>
+    </radialGradient>
+
+    <filter id="grain" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch" />
+      <feColorMatrix type="matrix" values="
+        0 0 0 0 0.90
+        0 0 0 0 0.82
+        0 0 0 0 0.70
+        0 0 0 0.06 0" />
+      <feBlend mode="overlay" in2="SourceGraphic" />
+    </filter>
+  </defs>
+
+  <!-- subtle mist -->
+  <rect width="2400" height="900" fill="url(#mistL)"/>
+  <rect width="2400" height="900" fill="url(#mistR)"/>
+
+  <!-- soft architectural arcs -->
+  <path d="M-120,560 C520,380 980,420 1330,500 C1650,575 1960,680 2520,560"
+        fill="none" stroke="#ffffff" stroke-opacity="0.06" stroke-width="2"/>
+
+  <path d="M-160,470 C560,300 1020,330 1370,420 C1710,510 2050,660 2580,520"
+        fill="none" stroke="#ffffff" stroke-opacity="0.045" stroke-width="2"/>
+
+  <!-- main gold band -->
+  <path d="M-220,520 C520,320 1040,350 1400,450 C1760,550 2100,690 2660,560"
+        fill="none" stroke="url(#gold)" stroke-width="18" stroke-linecap="round"/>
+
+  <!-- thin gold hairline for premium feel -->
+  <path d="M-220,545 C540,340 1060,375 1415,470 C1775,565 2110,705 2660,585"
+        fill="none" stroke="#c8a26a" stroke-opacity="0.22" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- grain -->
+  <rect width="2400" height="900" filter="url(#grain)" opacity="0.9"/>
+</svg>
