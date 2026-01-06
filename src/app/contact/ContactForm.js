@@ -14,6 +14,7 @@ import {
     CalendarDays
 } from "lucide-react";
 import { LuxuryDatePicker, LuxurySelect } from "@/components/FormControls";
+import emailjs from "@emailjs/browser";
 
 function Field({ label, icon: Icon, children }) {
     return (
@@ -49,15 +50,58 @@ export default function ContactForm() {
         setToday(`${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`);
     }, []);
 
-    function onSubmit(e) {
+    async function onSubmit(e) {
         e.preventDefault();
+        const formEl = e.currentTarget;
         setStatus("submitting");
 
-        // Static site for now: simulate submit (later: Strapi / email / webhook)
-        setTimeout(() => {
+        const form = new FormData(e.currentTarget);
+
+        // Honeypot
+        const hp = (form.get("company_website") || "").toString().trim();
+        if (hp) {
             setStatus("success");
-        }, 650);
+            return;
+        }
+
+        const params = {
+            name: form.get("name"),
+            phone: form.get("phone"),
+            email: form.get("email"),
+            city: form.get("city"),
+            space_type: spaceType,
+            preferred_date: preferredDate ? preferredDate.toDateString() : "Not selected",
+            project_details: form.get("message") || "—",
+        };
+
+        try {
+            // 1) Send to Exquisite (admin)
+            await emailjs.send(
+                process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+                process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+                params,
+                process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+            );
+
+            // 2) Send confirmation to customer
+            await emailjs.send(
+                process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+                process.env.NEXT_PUBLIC_EMAILJS_CONFIRM_TEMPLATE_ID,
+                params,
+                process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+            );
+
+            setStatus("success");
+            formEl.reset();
+            setSpaceType("Living Room");
+            setPreferredDate(null);
+        } catch (err) {
+            console.error(err);
+            setStatus("idle");
+            alert("Something went wrong. Please try again or call us directly.");
+        }
     }
+
 
     if (status === "success") {
         return (
@@ -159,6 +203,14 @@ export default function ContactForm() {
                     placeholder="Share your goals, size of space, budget range (optional), and timeline."
                 />
             </Field>
+
+            <input
+                type="text"
+                name="company_website"
+                tabIndex={-1}
+                autoComplete="off"
+                className="hidden"
+            />
 
             {/* Elegant bottom bar */}
             <div className="flex flex-col items-start justify-between gap-4 rounded-2xl border border-white/10 bg-black/25 p-4 sm:flex-row sm:items-center">
