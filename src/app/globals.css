@@ -122,3 +122,25 @@ body {
   outline: none;
   box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.35);
 }
+
+/* Subtle WhatsApp pulse */
+@keyframes wa-soft-pulse {
+  0%,
+  82%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+  88% {
+    transform: scale(1.04);
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0.10);
+  }
+  92% {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.08);
+  }
+}
+
+.wa-soft-pulse {
+  animation: wa-soft-pulse 3s ease-in-out infinite;
+}
