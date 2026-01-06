@@ -6,7 +6,7 @@ import HeroCarousel from "@/components/HeroCarousel";
 import Reveal from "@/components/Reveal";
 
 export const metadata = {
-  title: "Luxury Interior Design in Hyderabad | Exquisite",
+  title: "Exquisite - Curating Luxury Living",
   description:
     "Exquisite curates luxury residential interiors with timeless elegance, bespoke materials, and precision craftsmanship. Serving premium clients across India.",
   alternates: { canonical: "/" },
