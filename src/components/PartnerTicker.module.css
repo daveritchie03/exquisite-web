@@ -1,0 +1,33 @@
+/* .ticker {
+  position: relative;
+  width: 100%;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: ticker var(--ticker-duration, 28s) linear infinite;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ticker:hover .track {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none !important;
+    transform: translateX(0) !important;
+  }
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+} */

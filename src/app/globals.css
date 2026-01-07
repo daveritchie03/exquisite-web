@@ -133,7 +133,7 @@ body {
   }
   88% {
     transform: scale(1.04);
-    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0.10);
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0.1);
   }
   92% {
     transform: scale(1.02);
@@ -147,14 +147,14 @@ body {
 
 /* Gold gradient hover for social icons */
 .gold-hover {
-  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  transition: transform 200ms ease, box-shadow 200ms ease,
+    border-color 200ms ease;
 }
 
 .gold-hover:hover {
   transform: translateY(-4px);
   border-color: rgba(212, 175, 55, 0.55);
-  box-shadow:
-    0 10px 30px rgba(212, 175, 55, 0.25),
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.25),
     inset 0 0 0 1px rgba(212, 175, 55, 0.35);
 }
 
@@ -163,3 +163,12 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
