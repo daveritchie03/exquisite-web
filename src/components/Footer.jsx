@@ -1,5 +1,7 @@
 import Link from "next/link";
 import WhatsappIcon from "@/components/icons/WhatsappIcon";
+import { Instagram, Facebook, Youtube, Linkedin } from "lucide-react";
+import PinterestIcon from "@/components/icons/PinterestIcon";
 
 const WHATSAPP_NUMBER = "919885668317";
 const WHATSAPP_TEXT = "I would like to do interiors to my house!";
@@ -68,6 +70,52 @@ export default function Footer() {
               >
                 contact@exquisite.in
               </a>
+            </div>
+            <div className="text-white/80 my-3">Follow Us</div>
+
+            <div className="flex flex-wrap gap-3">
+              {[
+                {
+                  href: "https://in.pinterest.com/ExquisiteInteriors/",
+                  label: "Pinterest",
+                  Icon: PinterestIcon,
+                },
+                {
+                  href: "https://www.instagram.com/exquisiteInteriors/",
+                  label: "Instagram",
+                  Icon: Instagram,
+                },
+                {
+                  href: "https://www.facebook.com/ExquisiteInteriors/",
+                  label: "Facebook",
+                  Icon: Facebook,
+                },
+                {
+                  href: "https://www.youtube.com/@ExquisiteInteriors/",
+                  label: "YouTube",
+                  Icon: Youtube,
+                },
+                {
+                  href: "https://www.linkedin.com",
+                  label: "LinkedIn",
+                  Icon: Linkedin,
+                  muted: true,
+                },
+              ].map(({ href, label, Icon, muted }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className={[
+                    "gold-hover grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/5",
+                    muted ? "opacity-60 hover:opacity-100" : "",
+                  ].join(" ")}
+                >
+                  <Icon className="h-5 w-5 text-white/65" />
+                </a>
+              ))}
             </div>
           </div>
         </div>
