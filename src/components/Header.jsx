@@ -6,6 +6,7 @@ const nav = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
+  { href: "/portfolio", label: "Portfolio" },
   { href: "/process", label: "Our Process" },
   { href: "/pricing", label: "Pricing" },
   { href: "/contact", label: "Contact" },
@@ -88,7 +89,7 @@ export default function Header() {
       {/* Mobile nav */}
       <div className="md:hidden border-t border-white/10">
         <div className="mx-auto grid max-w-6xl grid-cols-3 gap-2 px-3 py-2 text-xs">
-          {nav.slice(0, 5).map((i) => (
+          {nav.slice(0, 6).map((i) => (
             <Link
               key={i.href}
               prefetch={false}
@@ -100,14 +101,14 @@ export default function Header() {
           ))}
 
           {/* WhatsApp tile */}
-          <a
+          {/* <a
             href={WHATSAPP_LINK}
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-lg border border-emerald-400/25 bg-emerald-500/10 px-2 py-2 text-center text-white/85 hover:bg-emerald-500/15 hover:border-emerald-300/55 transition"
           >
             WhatsApp
-          </a>
+          </a> */}
         </div>
       </div>
     </header>
