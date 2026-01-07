@@ -28,6 +28,26 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Exquisite Interiors",
+              url: "https://exquisite.in",
+              sameAs: [
+                "https://in.pinterest.com/ExquisiteInteriors/",
+                "https://www.instagram.com/exquisiteInteriors/",
+                "https://www.facebook.com/ExquisiteInteriors/",
+                "https://www.youtube.com/@ExquisiteInteriors/",
+                "https://www.linkedin.com",
+              ],
+            }),
+          }}
+        />
+      </head>
       <body className="min-h-screen">
         <Header />
         <main className="mx-auto max-w-6xl px-4 py-10">{children}</main>
