@@ -246,7 +246,7 @@ export default function PortfolioPage() {
                         "@context": "https://schema.org",
                         "@type": "Organization",
                         "name": "Exquisite",
-                        "url": "https://exquisite.in",
+                        "url": "https://exquisitespaces.in",
                         "brand": PARTNERS.map((p) => ({
                             "@type": "Brand",
                             "name": p.name,
