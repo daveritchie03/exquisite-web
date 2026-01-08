@@ -34,18 +34,22 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-white/10 bg-brand-black/80 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link href="/" prefetch={false} className="flex items-center gap-3">
-          <div className="relative h-10 w-10 overflow-hidden rounded-full border border-brand-gold/30 shadow-glow">
+          <div className="relative h-16 w-16 md:h-14 md:w-11 lg:h-16 lg:w-16 overflow-hidden rounded-full border border-brand-gold/30 shadow-glow">
             <Image
               src="/brand/logo.jpeg"
               alt="Exquisite — Curating Luxury Living"
               fill
+              sizes="48px"
               className="object-cover"
               priority
             />
           </div>
+
           <div className="leading-tight">
-            <div className="font-serif text-lg tracking-wide">Exquisite</div>
-            <div className="text-xs text-white/60 tracking-[0.18em] uppercase">
+            <div className="font-serif text-[18px] md:text-lg tracking-wide">
+              Exquisite
+            </div>
+            <div className="text-[10px] md:text-xs text-white/60 tracking-[0.18em] uppercase">
               Curating Luxury Living
             </div>
           </div>
