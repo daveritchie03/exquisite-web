@@ -76,17 +76,17 @@ export default function Footer() {
             <div className="flex flex-wrap gap-3">
               {[
                 {
-                  href: "https://in.pinterest.com/ExquisiteInteriors/",
+                  href: "https://in.pinterest.com/Exquisitelnteriors/",
                   label: "Pinterest",
                   Icon: PinterestIcon,
                 },
                 {
-                  href: "https://www.instagram.com/exquisiteInteriors/",
+                  href: "https://www.instagram.com/exquisitelnteriors/",
                   label: "Instagram",
                   Icon: Instagram,
                 },
                 {
-                  href: "https://www.facebook.com/ExquisiteInteriors/",
+                  href: "https://www.facebook.com/Exquisitelnteriors/",
                   label: "Facebook",
                   Icon: Facebook,
                 },
@@ -96,10 +96,10 @@ export default function Footer() {
                   Icon: Youtube,
                 },
                 {
-                  href: "https://www.linkedin.com",
+                  href: "https://www.linkedin.com/company/exquisiteinteriors/",
                   label: "LinkedIn",
                   Icon: Linkedin,
-                  muted: true,
+                  muted: false,
                 },
               ].map(({ href, label, Icon, muted }) => (
                 <a

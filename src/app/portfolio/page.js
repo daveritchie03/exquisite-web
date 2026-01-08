@@ -43,7 +43,7 @@ const FEATURED = [
 
 function FeaturedStrip() {
     return (
-        <section className="mt-10 md:mt-12">
+        <section className="mt-10 md:mt-12 overflow-x-hidden">
             <Reveal>
                 <SectionTitle
                     kicker="Featured"
