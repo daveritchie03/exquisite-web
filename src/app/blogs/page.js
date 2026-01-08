@@ -301,12 +301,12 @@ export default function BlogsPage() {
                             "@context": "https://schema.org",
                             "@type": "Blog",
                             name: "Exquisite Blog",
-                            url: "https://exquisite.in/blogs",
+                            url: "https://exquisitespaces.in/blogs",
                             blogPost: POSTS.map((p) => ({
                                 "@type": "BlogPosting",
                                 headline: p.title,
                                 description: p.excerpt,
-                                url: `https://exquisite.in/blogs/${p.slug}`,
+                                url: `https://exquisitespaces.in/blogs/${p.slug}`,
                             })),
                         }),
                     }}
