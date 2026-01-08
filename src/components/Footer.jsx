@@ -66,9 +66,9 @@ export default function Footer() {
               </a>
               <a
                 className="hover:text-white"
-                href="mailto:contact@exquisite.in"
+                href="mailto:hello@exquisitespaces.in"
               >
-                contact@exquisite.in
+                hello@exquisitespaces.in
               </a>
             </div>
             <div className="text-white/80 my-3">Follow Us</div>
