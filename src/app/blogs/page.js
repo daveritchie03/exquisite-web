@@ -99,57 +99,52 @@ const CATEGORIES = [
 
 function FeaturedStrip() {
     return (
-        <section className="mt-10 md:mt-12">
-            <div className="mx-auto max-w-6xl px-4">
-                <Reveal>
-                    <SectionTitle
-                        kicker="Featured Reads"
-                        title="Ideas worth saving"
-                        subtitle="Quick, practical insights — written like we’d explain it during a consultation."
-                    />
-                </Reveal>
-
-                <div className="mt-8 w-full max-w-full overflow-hidden">
-                    <div className="flex w-full max-w-full gap-4 overflow-x-auto pb-2 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                        {FEATURED.map((p, i) => (
-                            <Reveal
-                                key={p.slug}
-                                delay={i * 0.04}
-                                className="snap-start flex-none min-w-[88%] sm:min-w-[62%] lg:min-w-[48%]"
+        <div className="mt-8 -mx-4 px-4 overflow-x-hidden">
+            <div className="relative">
+                <div
+                    className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory
+      [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden
+      overscroll-x-contain"
+                    style={{ WebkitOverflowScrolling: "touch" }}
+                >
+                    {FEATURED.map((p, i) => (
+                        <Reveal
+                            key={p.slug}
+                            delay={i * 0.04}
+                            className="snap-start flex-none w-[88%] sm:w-[62%] lg:w-[48%]"
+                        >
+                            <Link
+                                href={`/blogs/${p.slug}`}
+                                prefetch={false}
+                                className="group block overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-glow transition hover:border-brand-gold/25"
                             >
-                                <Link
-                                    href={`/blogs/${p.slug}`}
-                                    prefetch={false}
-                                    className="group block overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-glow transition hover:border-brand-gold/25"
-                                >
-                                    <div className="relative aspect-[16/9] bg-black/25">
-                                        <Image
-                                            src={p.cover}
-                                            alt={p.title}
-                                            fill
-                                            sizes="(max-width: 640px) 88vw, (max-width: 1024px) 62vw, 48vw"
-                                            className="object-cover transition duration-500 group-hover:scale-[1.03]"
-                                        />
-                                        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.30),transparent_55%,rgba(0,0,0,0.55))]" />
-                                        <div className="absolute left-4 top-4 rounded-full border border-brand-gold/30 bg-black/45 px-3 py-1 text-[10px] tracking-[0.22em] uppercase text-white/85">
-                                            {p.tag}
-                                        </div>
+                                <div className="relative aspect-[16/9] bg-black/25">
+                                    <Image
+                                        src={p.cover}
+                                        alt={p.title}
+                                        fill
+                                        sizes="(max-width: 640px) 88vw, (max-width: 1024px) 62vw, 48vw"
+                                        className="object-cover transition duration-500 group-hover:scale-[1.03]"
+                                    />
+                                    <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.30),transparent_55%,rgba(0,0,0,0.55))]" />
+                                    <div className="absolute left-4 top-4 rounded-full border border-brand-gold/30 bg-black/45 px-3 py-1 text-[10px] tracking-[0.22em] uppercase text-white/85">
+                                        {p.tag}
                                     </div>
+                                </div>
 
-                                    <div className="p-6">
-                                        <div className="font-serif text-xl text-white">{p.title}</div>
-                                        <div className="mt-2 text-sm text-white/70">{p.excerpt}</div>
-                                        <div className="mt-4 text-xs tracking-[0.22em] uppercase text-white/45">
-                                            {p.readTime}
-                                        </div>
+                                <div className="p-6">
+                                    <div className="font-serif text-xl text-white">{p.title}</div>
+                                    <div className="mt-2 text-sm text-white/70">{p.excerpt}</div>
+                                    <div className="mt-4 text-xs tracking-[0.22em] uppercase text-white/45">
+                                        {p.readTime}
                                     </div>
-                                </Link>
-                            </Reveal>
-                        ))}
-                    </div>
+                                </div>
+                            </Link>
+                        </Reveal>
+                    ))}
                 </div>
             </div>
-        </section>
+        </div>
     );
 }
 
@@ -296,48 +291,50 @@ function CTA() {
 
 export default function BlogsPage() {
     return (
-        <div className="grid gap-10">
-            {/* SEO: Blog schema (basic) */}
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "Blog",
-                        name: "Exquisite Blog",
-                        url: "https://exquisite.in/blogs",
-                        blogPost: POSTS.map((p) => ({
-                            "@type": "BlogPosting",
-                            headline: p.title,
-                            description: p.excerpt,
-                            url: `https://exquisite.in/blogs/${p.slug}`,
-                        })),
-                    }),
-                }}
-            />
+        <div className="mx-auto w-full max-w-6xl px-4 pb-24">
+            <div className="grid gap-10">
+                {/* SEO: Blog schema (basic) */}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "Blog",
+                            name: "Exquisite Blog",
+                            url: "https://exquisite.in/blogs",
+                            blogPost: POSTS.map((p) => ({
+                                "@type": "BlogPosting",
+                                headline: p.title,
+                                description: p.excerpt,
+                                url: `https://exquisite.in/blogs/${p.slug}`,
+                            })),
+                        }),
+                    }}
+                />
 
-            {/* Hero */}
-            <Reveal>
-                <div className="rounded-3xl border border-white/10 bg-white/5 p-8 md:p-10 shadow-glow">
-                    <div className="text-xs tracking-[0.28em] uppercase text-white/55">
-                        Blogs
+                {/* Hero */}
+                <Reveal>
+                    <div className="rounded-3xl border border-white/10 bg-white/5 p-8 md:p-10 shadow-glow">
+                        <div className="text-xs tracking-[0.28em] uppercase text-white/55">
+                            Blogs
+                        </div>
+
+                        <h1 className="mt-4 font-serif text-4xl md:text-5xl text-white leading-[1.05] break-words [text-wrap:balance]">
+                            Luxury Interiors — Insights & Ideas
+                        </h1>
+
+                        <p className="mt-5 max-w-3xl text-white/70 leading-relaxed">
+                            Space-wise insights on finishes, layout, lighting, and execution —
+                            written to help you make better interior decisions.
+                        </p>
                     </div>
+                </Reveal>
 
-                    <h1 className="mt-4 font-serif text-4xl text-white md:text-5xl">
-                        Luxury Interiors — Insights & Ideas
-                    </h1>
-
-                    <p className="mt-5 max-w-3xl text-white/70 leading-relaxed">
-                        Space-wise insights on finishes, layout, lighting, and execution —
-                        written to help you make better interior decisions.
-                    </p>
-                </div>
-            </Reveal>
-
-            <FeaturedStrip />
-            <CategoryGrid />
-            <PostsGrid />
-            <CTA />
+                <FeaturedStrip />
+                <CategoryGrid />
+                <PostsGrid />
+                <CTA />
+            </div>
         </div>
     );
 }
