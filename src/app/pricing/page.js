@@ -96,14 +96,77 @@ function FAQItem({ q, a }) {
 }
 
 export const metadata = {
-    title: "Pricing | Exquisite",
+    title: "Interior Design Pricing in India | Exquisite Spaces (Essentials, Signature, Bespoke)",
     description:
-        "Explore refined interior design plans — Essentials, Signature, and Bespoke — crafted for luxury living.",
+        "Explore Exquisite Spaces’ interior design pricing in India — curated plans for luxury home interiors: Essentials (₹25K–60K), Signature (₹80K–2.5L), and Bespoke (₹3L+). Book a consultation for a tailored estimate.",
+    keywords: [
+        "interior design pricing India",
+        "interior design cost India",
+        "luxury interior design pricing",
+        "home interior design packages",
+        "modular kitchen design cost",
+        "bedroom interior design cost",
+        "living room interior design cost",
+        "turnkey home interiors pricing",
+        "Exquisite Spaces pricing",
+    ],
+    alternates: { canonical: "/pricing" },
+    openGraph: {
+        title: "Interior Design Pricing in India | Exquisite Spaces",
+        description:
+            "Luxury interior design plans with transparent ranges — Essentials (₹25K–60K), Signature (₹80K–2.5L), and Bespoke (₹3L+). Book a consultation for a tailored estimate.",
+        url: "https://exquisitespaces.in/pricing",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Interior Design Pricing in India | Exquisite Spaces",
+        description:
+            "Explore interior design pricing — Essentials, Signature, Bespoke. Book a consultation for a tailored estimate.",
+    },
 };
 
 export default function PricingPage() {
     return (
         <div>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "WebPage",
+                        name: "Pricing | Exquisite Spaces",
+                        url: "https://exquisitespaces.in/pricing",
+                        description:
+                            "Explore Exquisite Spaces’ interior design pricing in India — curated plans for luxury home interiors: Essentials, Signature, and Bespoke.",
+                        isPartOf: {
+                            "@type": "WebSite",
+                            name: "Exquisite Spaces",
+                            url: "https://exquisitespaces.in",
+                        },
+                        about: [
+                            { "@type": "Service", name: "Luxury Interior Design" },
+                            { "@type": "Service", name: "Home Interiors" },
+                            { "@type": "Service", name: "Modular Kitchen Design" },
+                        ],
+                    }),
+                }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "FAQPage",
+                        mainEntity: FAQS.map((f) => ({
+                            "@type": "Question",
+                            name: f.q,
+                            acceptedAnswer: { "@type": "Answer", text: f.a },
+                        })),
+                    }),
+                }}
+            />
+
             {/* Hero */}
             <section className="pt-2">
                 <Reveal>
@@ -155,7 +218,9 @@ export default function PricingPage() {
                                 className={[
                                     "group relative overflow-hidden rounded-3xl border bg-white/5 p-7 md:p-8 shadow-glow transition",
                                     "hover:-translate-y-1 hover:border-white/20",
-                                    p.popular ? "border-brand-gold/35" : "border-white/10 hover:border-white/20",
+                                    p.popular
+                                        ? "border-brand-gold/35"
+                                        : "border-white/10 hover:border-white/20",
                                 ].join(" ")}
                             >
                                 {/* sheen - MUST NOT block clicks */}
@@ -171,12 +236,19 @@ export default function PricingPage() {
                                 )}
 
                                 {/* content wrapper so badge never overlaps */}
-                                <div className={["relative z-10", p.popular ? "pt-10 md:pt-11" : ""].join(" ")}>
+                                <div
+                                    className={[
+                                        "relative z-10",
+                                        p.popular ? "pt-10 md:pt-11" : "",
+                                    ].join(" ")}
+                                >
                                     <div className="text-xs tracking-[0.28em] uppercase text-white/55">
                                         {p.subtitle}
                                     </div>
 
-                                    <div className="mt-4 font-serif text-3xl text-white">{p.name}</div>
+                                    <div className="mt-4 font-serif text-3xl text-white">
+                                        {p.name}
+                                    </div>
 
                                     <div className="mt-4 flex items-baseline gap-2">
                                         <span className="text-white/60">{p.price}</span>
@@ -185,7 +257,10 @@ export default function PricingPage() {
 
                                     <div className="mt-6 grid gap-3">
                                         {p.highlights.map((h) => (
-                                            <div key={h} className="flex items-start gap-3 text-sm text-white/75">
+                                            <div
+                                                key={h}
+                                                className="flex items-start gap-3 text-sm text-white/75"
+                                            >
                                                 <Check />
                                                 <span className="leading-relaxed">{h}</span>
                                             </div>

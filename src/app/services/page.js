@@ -1,10 +1,38 @@
 export const dynamic = "force-static";
 
 export const metadata = {
-    title: "Luxury Interior Design Services",
+    title: "Luxury Interior Design Services in India | Exquisite Spaces",
     description:
-        "Explore Exquisite’s luxury interior design services — curated living rooms, bespoke kitchens, designer bedrooms, premium wardrobes, and complete home interiors.",
+        "Explore luxury interior design services by Exquisite Spaces — living rooms, designer bedrooms, bespoke modular kitchens, premium wardrobes, luxury bathrooms, and complete home interiors across India.",
+    keywords: [
+        "luxury interior design services",
+        "turnkey interior solutions",
+        "luxury home interiors",
+        "residential interior design",
+        "living room interior design",
+        "designer bedroom interiors",
+        "modular kitchen design",
+        "wardrobe design",
+        "luxury bathroom design",
+        "complete home interiors",
+        "interior designers in India",
+        "Exquisite Spaces",
+        "exquisitespaces.in",
+    ],
     alternates: { canonical: "/services" },
+    openGraph: {
+        title: "Luxury Interior Design Services in India | Exquisite Spaces",
+        description:
+            "Luxury interior design services with bespoke materials and turnkey execution — curated for premium homes across India.",
+        url: "https://exquisitespaces.in/services",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Luxury Interior Design Services in India | Exquisite Spaces",
+        description:
+            "Luxury interior design services with bespoke materials and turnkey execution — curated for premium homes across India.",
+    },
 };
 
 import Link from "next/link";
@@ -289,11 +317,11 @@ export default function ServicesPage() {
                     </div>
 
                     <h1 className="mt-4 font-serif text-4xl text-white md:text-5xl">
-                        Interior Design, Curated to Perfection
+                        Luxury Interior Design Services
                     </h1>
 
                     <p className="mt-5 max-w-3xl text-white/70 leading-relaxed">
-                        Exquisite offers luxury interior design services that blend timeless
+                        Exquisite Spaces offers luxury interior design services that blend timeless
                         aesthetics with bespoke craftsmanship. Every space is designed with
                         intention — tailored to your lifestyle, preferences, and aspirations.
                     </p>
@@ -307,6 +335,7 @@ export default function ServicesPage() {
                         <Link
                             href="/portfolio"
                             prefetch={false}
+                            aria-label="View Exquisite Spaces interior design portfolio"
                             className="inline-flex items-center justify-center rounded-full border border-brand-gold/35 bg-black/35 px-6 py-3 text-sm text-white hover:border-brand-gold hover:shadow-glow transition"
                         >
                             View Portfolio
@@ -314,6 +343,7 @@ export default function ServicesPage() {
                         <Link
                             href="/contact"
                             prefetch={false}
+                            aria-label="Book a luxury interior design consultation with Exquisite Spaces"
                             className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm text-white/85 hover:text-white hover:border-white/25 transition"
                         >
                             Book a Consultation
@@ -336,21 +366,22 @@ export default function ServicesPage() {
                     delay={0.08}
                     className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
                 >
-                    {SERVICES.map((s) => (
+                    {SERVICES.map((s, idx) => (
                         <Link
                             key={s.slug}
                             href={`/services/${s.slug}/`}
                             prefetch={false}
+                            aria-label={`Explore ${s.title} by Exquisite Spaces`}
                             className="group overflow-hidden rounded-3xl border border-white/10 bg-white/5 hover:border-brand-gold/25 transition shadow-glow"
                         >
                             <div className="relative aspect-[16/10] bg-black/20">
                                 <Image
                                     src={s.image}
-                                    alt={s.title}
+                                    alt={`${s.title} — luxury interior design by Exquisite Spaces (India)`}
                                     fill
                                     sizes="(max-width: 1024px) 100vw, 33vw"
                                     className="object-cover transition duration-500 group-hover:scale-[1.03]"
-                                    priority={false}
+                                    priority={idx === 0}
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/10" />
                                 <div className="absolute left-4 top-4 rounded-full border border-brand-gold/30 bg-black/45 px-3 py-1 text-[10px] tracking-[0.22em] uppercase text-white/85">
@@ -387,12 +418,9 @@ export default function ServicesPage() {
                 </Reveal>
             </section>
 
-            {/* NEW: Why + Approach + Finishes */}
             <WhyExquisite />
             <OurApproach />
             <MaterialsFinishes />
-
-            {/* NEW: Cities list (like Portfolio) */}
             <ServiceLocations />
 
             {/* CTA */}
@@ -415,12 +443,14 @@ export default function ServicesPage() {
                             <Link
                                 href="/contact"
                                 prefetch={false}
+                                aria-label="Book a consultation with Exquisite Spaces"
                                 className="inline-flex items-center justify-center rounded-full border border-brand-gold/55 bg-black/35 px-6 py-3 text-sm text-white hover:border-brand-gold hover:shadow-glow transition"
                             >
                                 Book a Consultation
                             </Link>
                             <a
                                 href="tel:+919885668317"
+                                aria-label="Call Exquisite Spaces at +91 988 5668 317"
                                 className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm text-white/85 hover:text-white hover:border-white/25 transition"
                             >
                                 Call: +91 988 5668 317

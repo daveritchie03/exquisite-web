@@ -9,6 +9,7 @@ export const metadata = {
 
 import Link from "next/link";
 import Image from "next/image";
+import Script from "next/script";
 import Reveal from "@/components/Reveal";
 import SectionTitle from "@/components/SectionTitle";
 import PortfolioTabs from "@/components/PortfolioTabs";
@@ -54,12 +55,15 @@ function FeaturedStrip() {
 
             <div className="mt-8 flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 {FEATURED.map((p) => (
-                    <Reveal key={p.title} className="shrink-0 w-[88%] sm:w-[62%] lg:w-[48%] snap-start">
+                    <Reveal
+                        key={p.title}
+                        className="shrink-0 w-[88%] sm:w-[62%] lg:w-[48%] snap-start"
+                    >
                         <div className="group overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-glow">
                             <div className="relative aspect-[16/9] bg-black/20">
                                 <Image
                                     src={p.img}
-                                    alt={p.title}
+                                    alt={`${p.title} — luxury interior design portfolio by Exquisite Spaces`}
                                     fill
                                     sizes="(max-width: 640px) 88vw, (max-width: 1024px) 62vw, 48vw"
                                     className="object-cover transition duration-300 group-hover:scale-[1.02]"
@@ -223,8 +227,6 @@ function ServiceLocations() {
                             className="group relative inline-block font-medium text-white transition-colors duration-300 hover:text-brand-gold"
                         >
                             <span className="relative z-10">reach out</span>
-
-                            {/* underline */}
                             <span className="absolute left-0 -bottom-0.5 h-px w-full origin-left scale-x-0 bg-brand-gold transition-transform duration-300 group-hover:scale-x-100" />
                         </Link>{" "}
                         — we may be able to support select projects.
@@ -235,26 +237,28 @@ function ServiceLocations() {
     );
 }
 
-
 export default function PortfolioPage() {
     return (
         <div className="grid gap-10">
-            {/* Page Header */}
-            <script
+            {/* SEO: Organization schema */}
+            <Script
+                id="portfolio-org-schema"
                 type="application/ld+json"
+                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "Organization",
-                        "name": "Exquisite",
-                        "url": "https://exquisitespaces.in",
-                        "brand": PARTNERS.map((p) => ({
+                        name: "Exquisite",
+                        url: "https://exquisitespaces.in",
+                        brand: PARTNERS.map((p) => ({
                             "@type": "Brand",
-                            "name": p.name,
+                            name: p.name,
                         })),
                     }),
                 }}
             />
+
             <Reveal>
                 <div className="rounded-3xl border border-white/10 bg-white/5 p-8 md:p-10 shadow-glow">
                     <div className="text-xs tracking-[0.28em] uppercase text-white/55">
@@ -272,13 +276,9 @@ export default function PortfolioPage() {
                 </div>
             </Reveal>
 
-            {/* NEW: Featured strip */}
             <FeaturedStrip />
-
-            {/* NEW: Value / stats row */}
             <StatsRow />
 
-            {/* Existing: Tabs + carousel per category */}
             <section className="mt-6">
                 <Reveal>
                     <SectionTitle
@@ -293,8 +293,6 @@ export default function PortfolioPage() {
                 </div>
             </section>
 
-            {/* NEW: Authorised Partners */}
-            {/* NEW: Authorised Partners */}
             <section id="auth-partners" className="mt-16 md:mt-20">
                 <Reveal>
                     <h2 className="text-center font-serif text-3xl md:text-4xl text-white">
@@ -309,7 +307,6 @@ export default function PortfolioPage() {
                 <Reveal delay={0.05}>
                     <div className="relative mt-10 overflow-hidden rounded-3xl border border-white/10 bg-white/5 px-6 py-8 shadow-glow">
                         <PartnerTicker partners={PARTNERS} />
-                        {/* SEO: list brands (invisible but crawlable) */}
                         <ul className="sr-only">
                             {PARTNERS.map((p) => (
                                 <li key={`seo-${p.name}`}>{p.name}</li>
@@ -319,10 +316,7 @@ export default function PortfolioPage() {
                 </Reveal>
             </section>
 
-            {/* NEW: Cities */}
             <ServiceLocations />
-
-            {/* NEW: CTA */}
             <CTA />
         </div>
     );

@@ -352,9 +352,38 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
-  const service = SERVICES[resolvedParams.slug];
+  const slug = resolvedParams.slug;
+  const service = SERVICES[slug];
   if (!service) return {};
-  return { title: service.title, description: service.intro };
+
+  const title = `${service.title} | Luxury Interior Design in India | Exquisite Spaces`;
+  const description = `${service.intro} Bespoke materials, premium finishes, and turnkey execution by Exquisite Spaces across India.`;
+
+  return {
+    title,
+    description,
+    keywords: [
+      `${service.title.toLowerCase()}`,
+      "luxury interior design",
+      "turnkey home interiors",
+      "premium home interiors",
+      "interior designers in India",
+      "Exquisite Spaces",
+      "exquisitespaces.in",
+    ],
+    alternates: { canonical: `/services/${slug}` },
+    openGraph: {
+      title,
+      description,
+      url: `https://exquisitespaces.in/services/${slug}`,
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+  };
 }
 
 function QuickFacts({ facts = [] }) {
@@ -454,7 +483,7 @@ function ProcessTimeline() {
                 Step {s.k}
               </div>
               <div className="rounded-full border border-brand-gold/25 bg-black/25 px-3 py-1 text-[10px] tracking-[0.22em] uppercase text-white/70">
-                Exquisite
+                Exquisite Spaces
               </div>
             </div>
             <div className="mt-3 font-serif text-xl text-white">{s.t}</div>
@@ -479,7 +508,10 @@ function MaterialsFinishes({ items = [] }) {
         />
       </Reveal>
 
-      <Reveal delay={0.08} className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <Reveal
+        delay={0.08}
+        className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+      >
         {items.map((m) => (
           <div
             key={m}
@@ -566,22 +598,47 @@ function ServiceLocations() {
 
 export default async function ServiceDetailPage({ params }) {
   const resolvedParams = await params;
-  const service = SERVICES[resolvedParams.slug];
+  const slug = resolvedParams.slug;
+  const service = SERVICES[slug];
 
   if (!service) notFound();
 
+  const faqJsonLd =
+    service.faqs?.length
+      ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: service.faqs.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: f.a,
+          },
+        })),
+      }
+      : null;
+
   return (
     <div>
+      {faqJsonLd ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      ) : null}
+
       {/* Hero */}
       <Reveal>
         <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-glow">
           <div className="absolute inset-0">
             <Image
               src={service.image}
-              alt={service.title}
+              alt={`${service.title} — luxury interior design by Exquisite Spaces (India)`}
               fill
               className="object-cover"
               priority
+              sizes="100vw"
             />
             <div className="absolute inset-0 bg-black/20" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-transparent" />
@@ -633,7 +690,10 @@ export default async function ServiceDetailPage({ params }) {
         </Reveal>
 
         <Reveal delay={0.08} className="mt-10">
-          <ImageCarousel images={service.gallery} altPrefix={service.title} />
+          <ImageCarousel
+            images={service.gallery}
+            altPrefix={`${service.title} by Exquisite Spaces`}
+          />
         </Reveal>
       </section>
 
@@ -696,6 +756,7 @@ export default async function ServiceDetailPage({ params }) {
               <Link
                 href="/contact"
                 prefetch={false}
+                aria-label={`Book a consultation for ${service.title} with Exquisite Spaces`}
                 className="inline-flex items-center justify-center rounded-full border border-brand-gold/55 bg-black/35 px-6 py-3 text-sm text-white hover:border-brand-gold hover:shadow-glow transition"
               >
                 Book a Consultation
@@ -704,6 +765,7 @@ export default async function ServiceDetailPage({ params }) {
               <Link
                 href="/services"
                 prefetch={false}
+                aria-label="View all luxury interior design services by Exquisite Spaces"
                 className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm text-white/85 hover:text-white hover:border-white/25 transition"
               >
                 View All Services

@@ -14,10 +14,34 @@ import {
 import Image from "next/image";
 
 export const metadata = {
-    title: "Our Process | Exquisite",
+    title: "Interior Design Process | Exquisite Spaces (Consultation to Handover)",
     description:
-        "A refined, transparent interior design process — from consultation and concept to execution and handover.",
+        "Discover Exquisite Spaces’ interior design process in India — consultation, space planning, material curation, 3D visualisation, execution support, quality checks, and final handover.",
+    keywords: [
+        "interior design process",
+        "interior design process India",
+        "luxury interior design process",
+        "home interior design workflow",
+        "design and execution process",
+        "3D visualisation interior design",
+        "material selection interior design",
+        "turnkey home interiors process",
+        "Exquisite Spaces",
+    ],
     alternates: { canonical: "/process" },
+    openGraph: {
+        title: "Interior Design Process | Exquisite Spaces",
+        description:
+            "A refined, transparent interior design process — from consultation and concept to execution and handover.",
+        url: "https://exquisitespaces.in/process",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Interior Design Process | Exquisite Spaces",
+        description:
+            "Consultation → planning → materials → 3D → execution → handover. A clear, luxury-focused process.",
+    },
 };
 
 const STEPS = [
@@ -31,7 +55,7 @@ const STEPS = [
             "Style & functional priorities",
             "Budget & timeline alignment",
         ],
-        icon: MessageSquareText
+        icon: MessageSquareText,
     },
     {
         step: "02",
@@ -43,7 +67,7 @@ const STEPS = [
             "Lighting intent planning",
             "Design direction & mood",
         ],
-        icon: LayoutGrid
+        icon: LayoutGrid,
     },
     {
         step: "03",
@@ -55,7 +79,7 @@ const STEPS = [
             "Hardware & detailing",
             "Sampling & approvals",
         ],
-        icon: Palette
+        icon: Palette,
     },
     {
         step: "04",
@@ -67,7 +91,7 @@ const STEPS = [
             "Design sign-off",
             "Execution readiness",
         ],
-        icon: Box
+        icon: Box,
     },
     {
         step: "05",
@@ -79,7 +103,7 @@ const STEPS = [
             "Milestone quality checks",
             "Detail & finish validation",
         ],
-        icon: ClipboardCheck
+        icon: ClipboardCheck,
     },
     {
         step: "06",
@@ -91,7 +115,7 @@ const STEPS = [
             "Project walkthrough",
             "Handover support",
         ],
-        icon: Sparkles
+        icon: Sparkles,
     },
 ];
 
@@ -107,6 +131,73 @@ function Bullet({ children }) {
 export default function ProcessPage() {
     return (
         <div>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "HowTo",
+                        name: "Interior Design Process by Exquisite Spaces",
+                        description:
+                            "A refined, transparent interior design process — from consultation and concept to execution and handover.",
+                        url: "https://exquisitespaces.in/process",
+                        publisher: { "@type": "Organization", name: "Exquisite Spaces" },
+                        step: STEPS.map((s) => ({
+                            "@type": "HowToStep",
+                            name: `${s.step} — ${s.title}`,
+                            text: s.desc,
+                            itemListElement: s.points.map((p) => ({
+                                "@type": "HowToDirection",
+                                text: p,
+                            })),
+                        })),
+                    }),
+                }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "FAQPage",
+                        mainEntity: [
+                            {
+                                "@type": "Question",
+                                name: "How long does a full home project take?",
+                                acceptedAnswer: {
+                                    "@type": "Answer",
+                                    text: "Timelines depend on scope and site readiness. After the initial consultation, we provide a clear milestone-based plan so you always know what comes next.",
+                                },
+                            },
+                            {
+                                "@type": "Question",
+                                name: "Can I start with just one room?",
+                                acceptedAnswer: {
+                                    "@type": "Answer",
+                                    text: "Yes. Many clients begin with a living room, bedroom, or kitchen and expand later — the design language can remain cohesive.",
+                                },
+                            },
+                            {
+                                "@type": "Question",
+                                name: "Do you help with material selection?",
+                                acceptedAnswer: {
+                                    "@type": "Answer",
+                                    text: "Absolutely. We curate materials, finishes, and hardware so the overall palette feels refined — and stays consistent through execution.",
+                                },
+                            },
+                            {
+                                "@type": "Question",
+                                name: "Is execution included?",
+                                acceptedAnswer: {
+                                    "@type": "Answer",
+                                    text: "We can support end-to-end execution with quality checks and coordination, depending on your package and requirements.",
+                                },
+                            },
+                        ],
+                    }),
+                }}
+            />
+
             {/* Hero */}
             <Reveal>
                 <div className="rounded-3xl border border-white/10 bg-white/5 p-8 md:p-10 shadow-glow">
@@ -229,7 +320,7 @@ export default function ProcessPage() {
                                         </div>
                                     </div>
                                 </Reveal>
-                            )
+                            );
                         })}
                     </div>
                 </div>
