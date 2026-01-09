@@ -209,6 +209,7 @@ function ServiceLocations() {
                                 key={c}
                                 className="group inline-flex items-center rounded-full border border-white/10 bg-black/25 px-4 py-2 text-sm text-white/75 transition hover:border-brand-gold/25 hover:text-white hover:shadow-glow"
                             >
+                                <span className="mr-2 inline-block h-2 w-2 flex-shrink-0 rounded-full bg-brand-gold ring-2 ring-brand-gold/30 transition group-hover:ring-brand-gold/50" />
                                 {c}
                             </span>
                         ))}

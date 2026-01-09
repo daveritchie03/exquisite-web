@@ -94,7 +94,6 @@ export const metadata = {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
-  themeColor: "#ffffff",
 };
 
 export default function RootLayout({ children }) {
