@@ -6,11 +6,40 @@ import HeroCarousel from "@/components/HeroCarousel";
 import Reveal from "@/components/Reveal";
 
 export const metadata = {
-  title: "Exquisite - Curating Luxury Living",
+  title: "Luxury Interior Designers in India | Exquisite Spaces",
   description:
-    "Exquisite curates luxury residential interiors with timeless elegance, bespoke materials, and precision craftsmanship. Serving premium clients across India.",
+    "Exquisite Spaces designs luxury home interiors with bespoke materials and turnkey execution — living rooms, bedrooms, modular kitchens, wardrobes, and complete home interiors across India.",
+  keywords: [
+    "luxury interior designers in India",
+    "luxury interior design",
+    "turnkey home interiors",
+    "premium home interiors",
+    "bespoke interiors",
+    "residential interior design",
+    "living room interior design",
+    "bedroom interior design",
+    "modular kitchen design",
+    "wardrobe design",
+    "complete home interiors",
+    "Exquisite Spaces",
+    "exquisitespaces.in",
+  ],
   alternates: { canonical: "/" },
+  openGraph: {
+    title: "Luxury Interior Designers in India | Exquisite Spaces",
+    description:
+      "Luxury home interiors with bespoke design and turnkey execution — curated for discerning homeowners across India.",
+    url: "https://exquisitespaces.in/",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Luxury Interior Designers in India | Exquisite Spaces",
+    description:
+      "Luxury home interiors with bespoke design and turnkey execution — curated for discerning homeowners across India.",
+  },
 };
+
 
 const checklist = [
   "Timeless Aesthetics",
@@ -70,6 +99,11 @@ export default function HomePage() {
       {/* HERO */}
       <HeroCarousel
         images={["/hero/hero-1.jpg", "/hero/hero-2.jpg", "/hero/hero-3.jpg"]}
+        alts={[
+          "Luxury home interior design by Exquisite Spaces — curated modern living",
+          "Bespoke interior styling and premium finishes by Exquisite Spaces",
+          "Turnkey luxury home interiors in India by Exquisite Spaces",
+        ]}
       />
 
       {/* PHILOSOPHY */}
@@ -202,8 +236,9 @@ export default function HomePage() {
               <div className="relative h-64 w-full">
                 <Image
                   src={w.img}
-                  alt={w.title}
+                  alt={`${w.title} — luxury home interiors by Exquisite Spaces (India)`}
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover transition duration-500 group-hover:scale-[1.03]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
@@ -245,6 +280,7 @@ export default function HomePage() {
 
               <a
                 href="tel:+919885668317"
+                aria-label="Call Exquisite Spaces to book a luxury interior design consultation"
                 className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm text-white/85 hover:text-white hover:border-white/25 transition"
               >
                 Call: +91 988 5668 317

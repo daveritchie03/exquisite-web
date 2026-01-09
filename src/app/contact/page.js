@@ -1,16 +1,88 @@
 export const dynamic = "force-static";
 
 export const metadata = {
-    title: "Contact",
-    description: "Book a consultation with Exquisite.",
+    title: "Contact Exquisite Spaces | Book a Luxury Interior Design Consultation",
+    description:
+        "Book a consultation with Exquisite Spaces for luxury home interiors, modular kitchens, bedrooms, living rooms, and turnkey execution across India. Response within 24 hours.",
+    keywords: [
+        "contact Exquisite Spaces",
+        "book interior design consultation",
+        "luxury interior designers in India",
+        "interior designers Hyderabad",
+        "turnkey home interiors",
+        "bespoke interiors",
+        "modular kitchen design",
+        "living room interior design",
+        "bedroom interior design",
+        "premium home interiors",
+        "Exquisite Spaces",
+        "exquisitespaces.in",
+    ],
     alternates: { canonical: "/contact" },
+    openGraph: {
+        title: "Contact Exquisite Spaces | Book a Consultation",
+        description:
+            "Start your luxury home interior journey with Exquisite Spaces. Book a consultation — response within 24 hours.",
+        url: "https://exquisitespaces.in/contact",
+        type: "website",
+        images: [
+            {
+                url: "/featured/contact.jpg",
+                width: 1200,
+                height: 630,
+                alt: "Exquisite Spaces — luxury interior design consultation",
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Contact Exquisite Spaces | Book a Consultation",
+        description:
+            "Start your luxury home interior journey with Exquisite Spaces. Book a consultation — response within 24 hours.",
+        images: ["/featured/contact.jpg"],
+    },
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+            "max-video-preview": -1,
+        },
+    },
 };
 
+import Image from "next/image";
 import ContactForm from "./ContactForm";
 
 export default function ContactPage() {
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        name: "Exquisite Spaces",
+        url: "https://exquisitespaces.in/contact",
+        image: "https://exquisitespaces.in/featured/contact.jpg",
+        telephone: "+919885668317",
+        email: "hello@exquisitespaces.in",
+        areaServed: "IN",
+        availableLanguage: ["en", "hi", "te"],
+        sameAs: [
+            "https://www.instagram.com/exquisiteInteriors/",
+            "https://in.pinterest.com/ExquisiteInteriors/",
+            "https://www.facebook.com/ExquisiteInteriors/",
+            "https://www.youtube.com/@ExquisiteInteriors/",
+        ],
+    };
+
     return (
         <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+
             {/* Form Card */}
             <div className="rounded-3xl border border-white/10 bg-white/5 p-7 md:p-10 shadow-glow">
                 <div className="text-xs tracking-[0.28em] uppercase text-white/55">
@@ -57,13 +129,17 @@ export default function ContactPage() {
             <aside className="rounded-3xl border border-white/10 bg-white/5 shadow-glow overflow-hidden">
                 <div className="relative h-[260px] sm:h-[320px] lg:h-[360px]">
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/35 to-black/10" />
-                    {/* Replace with your own curated image later */}
-                    <img
+
+                    <Image
                         src="/featured/contact.jpg"
-                        alt="Luxury interior"
-                        className="h-full w-full object-cover"
+                        alt="A refined luxury home interior by Exquisite Spaces"
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 40vw"
+                        className="object-cover"
+                        loading="lazy"
+                        fetchPriority="auto"
                     />
-                    {/* Softer overlay so image doesn't get too dark */}
+
                     <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-black/10" />
                     <div className="absolute inset-0 ring-1 ring-inset ring-white/10" />
 
@@ -78,13 +154,15 @@ export default function ContactPage() {
                         <div className="mt-4 flex flex-col gap-3 sm:flex-row">
                             <a
                                 href="tel:+919885668317"
+                                aria-label="Call Exquisite Spaces at +91 988 5668 317"
                                 className="inline-flex items-center justify-center rounded-full border border-brand-gold/55 bg-black/35 px-5 py-3 text-sm text-white hover:border-brand-gold hover:shadow-glow transition"
                             >
                                 Call: +91 988 5668 317
                             </a>
 
                             <a
-                                href="mailto:hello@exquisiteinteriors.com"
+                                href="mailto:hello@exquisitespaces.in"
+                                aria-label="Email Exquisite Spaces to book a consultation"
                                 className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm text-white/85 hover:text-white hover:border-white/25 transition"
                             >
                                 Email Us
@@ -102,16 +180,16 @@ export default function ContactPage() {
                             </div>
                             <ul className="mt-3 space-y-2 text-sm text-white/75">
                                 <li className="flex gap-2">
-                                    <span className="text-brand-gold">✓</span>
-                                    A short discovery call to understand your style & needs
+                                    <span className="text-brand-gold">✓</span>A short discovery call
+                                    to understand your style & needs
                                 </li>
                                 <li className="flex gap-2">
-                                    <span className="text-brand-gold">✓</span>
-                                    Mood & direction references aligned to your space
+                                    <span className="text-brand-gold">✓</span>Mood & direction
+                                    references aligned to your space
                                 </li>
                                 <li className="flex gap-2">
-                                    <span className="text-brand-gold">✓</span>
-                                    Transparent scope guidance (no pushy sales)
+                                    <span className="text-brand-gold">✓</span>Transparent scope
+                                    guidance (no pushy sales)
                                 </li>
                             </ul>
                         </div>

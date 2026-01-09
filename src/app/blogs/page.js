@@ -1,16 +1,49 @@
 export const dynamic = "force-static";
 
 export const metadata = {
-    title: "Blogs",
+    title: "Luxury Interior Design Blogs | Exquisite Spaces",
     description:
-        "Explore luxury interior design insights from Exquisite — living rooms, bedrooms, modular kitchens, wardrobes, bathrooms, and complete home interiors.",
+        "Explore luxury interior design insights from Exquisite Spaces — living rooms, bedrooms, modular kitchens, wardrobes, bathrooms, and complete home interiors across India.",
+    keywords: [
+        "luxury interior design blog",
+        "interior design ideas",
+        "home interior design tips",
+        "luxury living room design",
+        "designer bedroom ideas",
+        "modular kitchen design ideas",
+        "wardrobe design ideas",
+        "luxury bathroom design",
+        "complete home interiors",
+        "turnkey home interiors",
+        "interior designers in India",
+        "premium interior designers",
+        "Exquisite Spaces",
+        "exquisitespaces.in",
+    ],
     alternates: { canonical: "/blogs" },
+    openGraph: {
+        title: "Luxury Interior Design Blogs | Exquisite Spaces",
+        description:
+            "Space-wise insights on finishes, layout, lighting, and execution — written to help you make better interior decisions.",
+        url: "https://exquisitespaces.in/blogs",
+        siteName: "Exquisite Spaces",
+        type: "website",
+        locale: "en_IN",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Luxury Interior Design Blogs | Exquisite Spaces",
+        description:
+            "Luxury interiors insights on finishes, layout, lighting, and execution — by Exquisite Spaces.",
+    },
 };
+
 
 import Link from "next/link";
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import SectionTitle from "@/components/SectionTitle";
+import Script from "next/script";
 
 const POSTS = [
     {
@@ -121,7 +154,7 @@ function FeaturedStrip() {
                                 <div className="relative aspect-[16/9] bg-black/25">
                                     <Image
                                         src={p.cover}
-                                        alt={p.title}
+                                        alt={`${p.title} interior design ideas by Exquisite Spaces — ${p.tag.toLowerCase()} inspiration`}
                                         fill
                                         sizes="(max-width: 640px) 88vw, (max-width: 1024px) 62vw, 48vw"
                                         className="object-cover transition duration-500 group-hover:scale-[1.03]"
@@ -171,7 +204,7 @@ function CategoryGrid() {
                                 <div className="relative aspect-[4/5] bg-black/25">
                                     <Image
                                         src={c.img}
-                                        alt={c.title}
+                                        alt={`${c.title} interior design inspiration by Exquisite Spaces — luxury home interiors`}
                                         fill
                                         sizes="(max-width: 1024px) 50vw, 25vw"
                                         className="object-cover transition duration-500 group-hover:scale-[1.03]"
@@ -216,7 +249,7 @@ function PostsGrid() {
                                 <div className="relative aspect-[16/10] bg-black/25">
                                     <Image
                                         src={p.cover}
-                                        alt={p.title}
+                                        alt={`${p.title} interior design ideas by Exquisite Spaces — ${p.tag.toLowerCase()} inspiration`}
                                         fill
                                         sizes="(max-width: 1024px) 100vw, 33vw"
                                         className="object-cover transition duration-500 group-hover:scale-[1.03]"
@@ -294,14 +327,21 @@ export default function BlogsPage() {
         <div className="mx-auto w-full max-w-6xl px-4 pb-24">
             <div className="grid gap-10">
                 {/* SEO: Blog schema (basic) */}
-                <script
+                <Script
+                    id="blogs-schema"
                     type="application/ld+json"
+                    strategy="afterInteractive"
                     dangerouslySetInnerHTML={{
                         __html: JSON.stringify({
                             "@context": "https://schema.org",
                             "@type": "Blog",
-                            name: "Exquisite Blog",
+                            name: "Exquisite Spaces Blog",
                             url: "https://exquisitespaces.in/blogs",
+                            publisher: {
+                                "@type": "Organization",
+                                name: "Exquisite Spaces",
+                                url: "https://exquisitespaces.in",
+                            },
                             blogPost: POSTS.map((p) => ({
                                 "@type": "BlogPosting",
                                 headline: p.title,
@@ -311,6 +351,7 @@ export default function BlogsPage() {
                         }),
                     }}
                 />
+
 
                 {/* Hero */}
                 <Reveal>

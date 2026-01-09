@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import TawkWidget from "@/components/TawkWidget";
 
 export const metadata = {
+  applicationName: "Exquisite Spaces",
   title: {
     default: "Exquisite — Curating Luxury Living",
     template: "%s | Exquisite",
@@ -13,7 +14,6 @@ export const metadata = {
   description:
     "Luxury interior design and turnkey home interiors with timeless elegance, bespoke materials, and precision craftsmanship. Serving premium clients across India.",
   keywords: [
-    // Core luxury & brand
     "luxury interior design",
     "premium interior designers",
     "bespoke interiors",
@@ -21,8 +21,6 @@ export const metadata = {
     "custom home interiors",
     "Exquisite Spaces",
     "exquisitespaces.in",
-
-    // Decorpot-style high-intent keywords
     "interior designers in India",
     "best interior designers in India",
     "interior designers near me",
@@ -31,8 +29,6 @@ export const metadata = {
     "turnkey interior solutions",
     "end to end interior design",
     "residential interior design",
-
-    // Room-specific (very important for SEO)
     "living room interior design",
     "luxury living room interiors",
     "bedroom interior design",
@@ -43,15 +39,11 @@ export const metadata = {
     "custom wardrobe interiors",
     "false ceiling design",
     "lighting design for homes",
-
-    // Property-type focused
     "apartment interior design",
     "villa interior design",
     "flat interior design",
     "home renovation services",
     "complete home interiors",
-
-    // Style & solution based
     "modern interior design",
     "contemporary interior design",
     "minimalist interior design",
@@ -60,6 +52,7 @@ export const metadata = {
     "interior styling services",
     "luxury home decor",
   ],
+  category: "Interior Design",
   metadataBase: new URL("https://exquisitespaces.in"),
   alternates: {
     canonical: "/",
@@ -69,19 +62,29 @@ export const metadata = {
     description:
       "Luxury home interiors that blend timeless elegance with bespoke craftsmanship. Designed with intention, built with precision.",
     url: "https://exquisitespaces.in",
-    siteName: "Exquisite",
+    siteName: "Exquisite Spaces",
     type: "website",
     locale: "en_IN",
+    images: [
+      {
+        url: "/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Exquisite Spaces — Luxury interior design and turnkey home interiors in India",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Exquisite — Curating Luxury Living",
     description:
       "Luxury home interiors that blend timeless elegance with bespoke craftsmanship. Designed with intention, built with precision.",
+    images: ["/og.jpg"],
   },
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
@@ -90,11 +93,18 @@ export const metadata = {
       "max-video-preview": -1,
     },
   },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || undefined,
+    other: {
+      "msvalidate.01": process.env.NEXT_PUBLIC_BING_VERIFICATION || undefined,
+    },
+  },
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
-  themeColor: "#ffffff",
+  publisher: "Exquisite Spaces",
+  creator: "Exquisite Spaces",
 };
 
 export default function RootLayout({ children }) {
@@ -107,15 +117,30 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "name": "Exquisite Spaces",
-              "alternateName": ["Exquisite", "Exquisite Interiors", "Exquisite Spaces", "Luxury Spaces"],
-              "url": "https://exquisitespaces.in",
-              "logo": "https://exquisitespaces.in/logo.png",
-              "sameAs": [
+              name: "Exquisite Spaces",
+              alternateName: ["Exquisite", "Exquisite Interiors"],
+              url: "https://exquisitespaces.in",
+              logo: "https://exquisitespaces.in/logo.png",
+              sameAs: [
                 "https://www.instagram.com/exquisiteInteriors/",
                 "https://in.pinterest.com/ExquisiteInteriors/",
                 "https://www.facebook.com/ExquisiteInteriors/",
-                "https://www.youtube.com/@ExquisiteInteriors/"
+                "https://www.youtube.com/@ExquisiteInteriors/",
+              ],
+              areaServed: "IN",
+              serviceType: [
+                "Luxury Interior Design",
+                "Turnkey Home Interiors",
+                "Residential Interior Design",
+                "Modular Kitchen Design",
+                "Wardrobe Design",
+              ],
+              contactPoint: [
+                {
+                  "@type": "ContactPoint",
+                  contactType: "customer support",
+                  availableLanguage: ["en", "hi"],
+                },
               ],
             }),
           }}
