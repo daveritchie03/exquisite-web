@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import Script from "next/script";
 import { notFound } from "next/navigation";
 import Reveal from "@/components/Reveal";
 import SectionTitle from "@/components/SectionTitle";
@@ -266,14 +267,49 @@ export async function generateMetadata({ params }) {
     const resolvedParams = await params;
     const post = POSTS[resolvedParams.slug];
     if (!post) return {};
+
+    const url = `https://exquisitespaces.in/blogs/${resolvedParams.slug}`;
+
     return {
-        title: post.title,
+        title: `${post.title} | Exquisite Spaces Blog`,
         description: post.intro,
+        keywords: [
+            "luxury interior design blog",
+            `${post.category.toLowerCase()} interior design`,
+            `${post.title.toLowerCase()}`,
+            "home interior design tips",
+            "interior designers in India",
+            "Exquisite Spaces",
+            "exquisitespaces.in",
+        ],
         alternates: { canonical: `/blogs/${resolvedParams.slug}` },
+        robots: { index: true, follow: true },
+        openGraph: {
+            title: `${post.title} | Exquisite Spaces`,
+            description: post.intro,
+            url,
+            type: "article",
+            siteName: "Exquisite Spaces",
+            locale: "en_IN",
+            images: [
+                {
+                    url: `https://exquisitespaces.in${post.cover}`,
+                    width: 1200,
+                    height: 630,
+                    alt: `${post.title} — luxury interior design inspiration by Exquisite Spaces`,
+                },
+            ],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: `${post.title} | Exquisite Spaces`,
+            description: post.intro,
+            images: [`https://exquisitespaces.in${post.cover}`],
+        },
     };
 }
 
-function Gallery({ images = [] }) {
+function Gallery({ images = [], title = "" }) {
     if (!images.length) return null;
 
     return (
@@ -287,7 +323,7 @@ function Gallery({ images = [] }) {
                         <div className="relative aspect-[16/9] bg-black/25">
                             <Image
                                 src={src}
-                                alt={`Gallery image ${i + 1}`}
+                                alt={`${title} — luxury interior design reference image ${i + 1} by Exquisite Spaces`}
                                 fill
                                 sizes="(max-width: 640px) 88vw, (max-width: 1024px) 62vw, 48vw"
                                 className="object-cover"
@@ -306,6 +342,8 @@ export default async function BlogDetailPage({ params }) {
     const post = POSTS[resolvedParams.slug];
     if (!post) notFound();
 
+    const url = `https://exquisitespaces.in/blogs/${resolvedParams.slug}`;
+
     const related = Object.keys(POSTS)
         .filter((k) => k !== resolvedParams.slug)
         .slice(0, 4)
@@ -313,19 +351,55 @@ export default async function BlogDetailPage({ params }) {
 
     return (
         <div className="grid gap-10">
-            {/* SEO: BlogPosting schema (basic) */}
-            <script
+            {/* SEO: BlogPosting + Breadcrumbs schema */}
+            <Script
+                id="blogposting-schema"
                 type="application/ld+json"
+                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "BlogPosting",
+                        mainEntityOfPage: { "@type": "WebPage", "@id": url },
                         headline: post.title,
                         description: post.intro,
-                        url: `https://exquisitespaces.in/blogs/${resolvedParams.slug}`,
-                        image: `https://exquisitespaces.in${post.cover}`,
-                        author: { "@type": "Organization", name: "Exquisite" },
-                        publisher: { "@type": "Organization", name: "Exquisite" },
+                        url,
+                        image: [`https://exquisitespaces.in${post.cover}`],
+                        author: { "@type": "Organization", name: "Exquisite Spaces" },
+                        publisher: { "@type": "Organization", name: "Exquisite Spaces" },
+                        articleSection: post.category,
+                    }),
+                }}
+            />
+
+            <Script
+                id="breadcrumbs-schema"
+                type="application/ld+json"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "BreadcrumbList",
+                        itemListElement: [
+                            {
+                                "@type": "ListItem",
+                                position: 1,
+                                name: "Home",
+                                item: "https://exquisitespaces.in/",
+                            },
+                            {
+                                "@type": "ListItem",
+                                position: 2,
+                                name: "Blogs",
+                                item: "https://exquisitespaces.in/blogs",
+                            },
+                            {
+                                "@type": "ListItem",
+                                position: 3,
+                                name: post.title,
+                                item: url,
+                            },
+                        ],
                     }),
                 }}
             />
@@ -368,7 +442,7 @@ export default async function BlogDetailPage({ params }) {
                         <div className="relative aspect-[16/10] overflow-hidden rounded-3xl border border-white/10 bg-black/25">
                             <Image
                                 src={post.cover}
-                                alt={post.title}
+                                alt={`${post.title} — luxury interior design inspiration by Exquisite Spaces`}
                                 fill
                                 sizes="(max-width: 768px) 100vw, 50vw"
                                 className="object-cover"
@@ -435,7 +509,7 @@ export default async function BlogDetailPage({ params }) {
                 </Reveal>
 
                 <Reveal delay={0.05}>
-                    <Gallery images={post.gallery} />
+                    <Gallery images={post.gallery} title={post.title} />
                 </Reveal>
             </section>
 
@@ -460,7 +534,7 @@ export default async function BlogDetailPage({ params }) {
                                 <div className="relative aspect-[16/10] bg-black/25">
                                     <Image
                                         src={r.cover}
-                                        alt={r.title}
+                                        alt={`${r.title} — luxury interior design blog by Exquisite Spaces`}
                                         fill
                                         sizes="(max-width: 1024px) 50vw, 25vw"
                                         className="object-cover transition duration-500 group-hover:scale-[1.03]"
